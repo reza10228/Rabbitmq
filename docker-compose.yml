@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+    rabbitmq:
+        container_name: same-rabbit
+        environment:
+            - RABBITMQ_DEFAULT_USER=USERNAME
+            - RABBITMQ_DEFAULT_PASS=PASSWORD
+        volumes:
+            - '/home/USER/rabbitmq/:/var/lib/rabbitmq'
+        ports:
+            - '5673:5672'
+            - '15673:15672'
+        image: 'rabbitmq:management'
+    
+        networks:
+              - my_service
+
+networks:
+  my_service:
+    external: true
